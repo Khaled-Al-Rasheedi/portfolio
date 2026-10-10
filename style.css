@@ -1,36 +1,35 @@
-/* ===== VARIABLES (all colors and sizes used in this project) ===== */
+
+/* ===== 1. VARIABLES ===== */
 :root {
   --color-bg: #f5f7fa;
-  --color-surface: #ffffff;
+  --color-white: #ffffff;
   --color-text: #1f2933;
   --color-muted: #52606d;
   --color-primary: #2f5d8a;
-  --color-primary-dark: #1f4066;
+  --color-dark: #1f4066;
   --color-border: #d5dde5;
-  --color-on-primary: #ffffff;
 
   --space-s: 0.5rem;
   --space-m: 1rem;
   --space-l: 2rem;
   --space-xl: 4rem;
 
-  --radius: 8px;
+  --radius: 10px;
   --max-width: 70rem;
 }
 
 
+/* ===== 2. GENERAL STYLES ===== */
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  font-family: Arial, sans-serif;
   line-height: 1.6;
   color: var(--color-text);
   background-color: var(--color-bg);
-}
-
-img {
-  max-width: 100%;
-  height: auto;
 }
 
 a {
@@ -47,39 +46,41 @@ h1, h2, h3, p {
   overflow-wrap: break-word;
 }
 
-/* ===== NAV (Flexbox) ===== */
+
+/* ===== 3. NAVBAR (FLEXBOX) ===== */
 .site-header {
-  background-color: var(--color-surface);
+  background-color: var(--color-white);
   border-bottom: 1px solid var(--color-border);
 }
 
 .nav {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--space-m);
+
   max-width: var(--max-width);
   margin: 0 auto;
   padding: var(--space-m);
 }
 
 .nav__brand {
+  font-size: 1.5rem;
   font-weight: bold;
-  font-size: 1.25rem;
   text-decoration: none;
-  color: var(--color-text);
+  color: var(--color-dark);
 }
 
 .nav__links {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-m);
+  gap: var(--space-l);
 }
 
 .nav__links a {
+  font-weight: bold;
   text-decoration: none;
-  font-weight: 500;
 }
 
 .nav__links a:hover,
@@ -87,29 +88,42 @@ h1, h2, h3, p {
   text-decoration: underline;
 }
 
-/* ===== HERO ===== */
+
+/* ===== 4. HERO ===== */
 .hero {
-  text-align: center;
-  padding: var(--space-xl) var(--space-m);
   background-color: var(--color-primary);
-  color: var(--color-on-primary);
+  color: var(--color-white);
+  text-align: center;
+  padding: 5rem var(--space-m);
+}
+
+.hero__content {
+  max-width: 45rem;
+  margin: 0 auto;
+}
+
+.hero__intro {
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 3px;
+  margin-bottom: var(--space-m);
 }
 
 .hero h1 {
+  font-size: 3rem;
   margin: 0 0 var(--space-m);
-  font-size: 2.25rem;
 }
 
-.hero p {
+.hero__description {
+  font-size: 1.15rem;
   margin: 0 0 var(--space-l);
-  font-size: 1.125rem;
 }
 
 .button {
   display: inline-block;
-  padding: var(--space-s) var(--space-l);
-  background-color: var(--color-surface);
-  color: var(--color-primary-dark);
+  padding: 0.75rem 2rem;
+  background-color: var(--color-white);
+  color: var(--color-dark);
   font-weight: bold;
   text-decoration: none;
   border-radius: var(--radius);
@@ -120,54 +134,130 @@ h1, h2, h3, p {
   background-color: var(--color-bg);
 }
 
-/* ===== SECTIONS ===== */
-.projects,
-.about {
+
+/* ===== 5. PROJECTS SECTION ===== */
+.projects {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: var(--space-xl) var(--space-m);
 }
 
-.projects h2,
-.about h2 {
+.projects h2 {
+  font-size: 2rem;
+  margin: 0 0 var(--space-s);
+}
+
+.section-description {
+  color: var(--color-muted);
   margin: 0 0 var(--space-l);
 }
 
-/* ===== PROJECT GRID (Grid) =====
-   auto-fit + minmax: as many columns as fit, at least ~16rem each,
-   and never wider than the screen (min(100%, 16rem)). */
+
+/* ===== 6. PROJECT GRID (CSS GRID) ===== */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-l);
 }
 
+
+/* ===== 7. PROJECT CARDS (FLEXBOX) ===== */
 .card {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 
+  background-color: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  padding: var(--space-m);
+  padding: var(--space-l);
 }
 
-.card__title,
+.card__number {
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin: 0 0 var(--space-m);
+}
+
+.card__title {
+  font-size: 1.4rem;
+  color: var(--color-dark);
+  margin: 0 0 var(--space-m);
+}
+
 .card__text {
-  display: block;
-  width: 100%;
+  color: var(--color-muted);
+  margin: 0 0 var(--space-l);
 }
 
-/* ===== FOOTER (Flexbox) ===== */
+.card__tech {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--color-primary);
+  margin: auto 0 var(--space-m);
+}
+
+.card__link {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.card__link:hover,
+.card__link:focus {
+  text-decoration: underline;
+}
+
+.card__note {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+
+/* ===== 8. ABOUT SECTION ===== */
+.about {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-m);
+  background-color: var(--color-white);
+}
+
+.about h2 {
+  font-size: 2rem;
+  margin: 0 0 var(--space-l);
+}
+
+.about p {
+  color: var(--color-muted);
+  max-width: 50rem;
+}
+
+.about__link {
+  display: inline-block;
+  margin-top: var(--space-m);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.about__link:hover,
+.about__link:focus {
+  text-decoration: underline;
+}
+
+
+/* ===== 9. FOOTER (FLEXBOX) ===== */
 .site-footer {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--space-m);
-  padding: var(--space-l) var(--space-m);
-  background-color: var(--color-primary-dark);
-  color: var(--color-on-primary);
+
+  padding: var(--space-l);
+  background-color: var(--color-dark);
+  color: var(--color-white);
 }
 
 .site-footer p {
@@ -176,9 +266,46 @@ h1, h2, h3, p {
 
 .footer__links {
   display: flex;
-  gap: var(--space-m);
+  gap: var(--space-l);
 }
 
 .site-footer a {
-  color: var(--color-on-primary);
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+.site-footer a:hover,
+.site-footer a:focus {
+  text-decoration: underline;
+}
+
+
+/* ===== 10. MOBILE RESPONSIVENESS ===== */
+@media (max-width: 700px) {
+
+  .nav {
+    justify-content: center;
+  }
+
+  .nav__links {
+    justify-content: center;
+    gap: var(--space-m);
+  }
+
+  .hero {
+    padding: 3rem var(--space-m);
+  }
+
+  .hero h1 {
+    font-size: 2.25rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer {
+    justify-content: center;
+    text-align: center;
+  }
 }

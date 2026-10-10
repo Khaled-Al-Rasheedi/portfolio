@@ -1,80 +1,206 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My Portfolio</title>
+  <meta name="description" content="Khaled's software development portfolio featuring web applications, backend APIs, and software engineering projects.">
+  <title>Khaled | Software Developer</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <!-- NAV: built with Flexbox -->
+  <!-- ===== NAVBAR ===== -->
   <header class="site-header">
     <nav class="nav" aria-label="Main navigation">
-      <a class="nav__brand" href="#home">My Portfolio</a>
+      <a class="nav__brand" href="#home">Khaled.</a>
+
       <ul class="nav__links">
         <li><a href="#projects">Projects</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="https://github.com/Khaled-Al-Rasheedi" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/khaled-alrasheedi/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li>
+          <a href="https://github.com/Khaled-Al-Rasheedi"
+             target="_blank" rel="noopener noreferrer">GitHub</a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/khaled-alrasheedi/"
+             target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </li>
       </ul>
     </nav>
   </header>
 
   <main id="home">
 
-    <!-- HERO -->
+    <!-- ===== HERO ===== -->
     <section class="hero">
-      <h1>Hi, I'm Khaled</h1>
-      <p>I build simple, clean websites. Here is some of my work.</p>
-      <a class="button" href="#projects">See my projects</a>
-    </section>
+      <div class="hero__content">
+        <p class="hero__intro">SOFTWARE DEVELOPER</p>
 
-    <!-- PROJECTS: built with Grid -->
-    <section class="projects" id="projects">
-      <h2>Projects</h2>
-      <div class="grid">
-        <article class="card">
-          <h3 class="card__title">Project Name 1</h3>
-          <p class="card__text">Short description of project 1. Replace this later.</p>
-        </article>
-        <article class="card">
-          <h3 class="card__title">Project Name 2</h3>
-          <p class="card__text">Short description of project 2. Replace this later.</p>
-        </article>
-        <article class="card">
-          <h3 class="card__title">Project Name 3</h3>
-          <p class="card__text">Short description of project 3. Replace this later.</p>
-        </article>
-        <article class="card">
-          <h3 class="card__title">Project Name 4</h3>
-          <p class="card__text">Short description of project 4. Replace this later.</p>
-        </article>
-        <article class="card">
-          <h3 class="card__title">Project Name 5</h3>
-          <p class="card__text">Short description of project 5. Replace this later.</p>
-        </article>
-        <article class="card">
-          <h3 class="card__title">Project Name 6</h3>
-          <p class="card__text">Short description of project 6. Replace this later.</p>
-        </article>
+        <h1>Hi, I'm Khaled.</h1>
+
+        <p class="hero__description">
+          A Computer Science graduate passionate about building
+          web applications, backend systems, and practical
+          software solutions.
+        </p>
+
+        <a class="button" href="#projects">Explore My Projects &darr;</a>
       </div>
     </section>
 
-    <!-- ABOUT -->
+    <!-- ===== PROJECTS ===== -->
+    <section class="projects" id="projects">
+      <h2>Featured Projects</h2>
+
+      <p class="section-description">
+        A selection of my development work, practical experience,
+        and software engineering projects.
+      </p>
+
+      <div class="grid">
+
+        <!-- PROJECT 1 -->
+        <article class="card">
+          <p class="card__number">PROJECT 01</p>
+
+          <h3 class="card__title">Simple Drive API</h3>
+
+          <p class="card__text">
+            Developed a file storage REST API using Ruby on Rails.
+            The system supports secure bearer-token authentication,
+            file uploads and retrieval, and multiple storage backends,
+            including local storage, databases, Amazon S3, and FTP.
+          </p>
+
+          <p class="card__tech">
+            Ruby on Rails · REST API · Storage
+          </p>
+
+          <a class="card__link"
+             href="https://github.com/Khaled-Al-Rasheedi/Simple-Drive-Project"
+             target="_blank" rel="noopener noreferrer">
+            View on GitHub &rarr;
+          </a>
+        </article>
+
+        <!-- PROJECT 2 -->
+        <article class="card">
+          <p class="card__number">PROJECT 02</p>
+
+          <h3 class="card__title">QR Scanner & Generator</h3>
+
+          <p class="card__text">
+            Built a web application using Node.js and Express
+            that allows users to generate QR codes from URLs,
+            scan QR codes from uploaded images, and download
+            generated codes as PNG files. Features a simple
+            interface styled with Bootstrap.
+          </p>
+
+          <p class="card__tech">
+            Node.js · Express · Bootstrap
+          </p>
+
+          <a class="card__link"
+             href="https://github.com/Khaled-Al-Rasheedi/QrCode-Scan-Generate"
+             target="_blank" rel="noopener noreferrer">
+            View on GitHub &rarr;
+          </a>
+        </article>
+
+        <!-- PROJECT 3 -->
+        <article class="card">
+          <p class="card__number">PROJECT 03</p>
+
+          <h3 class="card__title">Bulk Ordering Platform</h3>
+
+          <p class="card__text">
+            Contributed to the development of a full-stack
+            e-commerce platform for a private company,
+            designed to facilitate bulk purchasing and
+            group orders. Participated from the project's
+            initial stages, helping build both frontend
+            interfaces and backend functionality.
+          </p>
+
+          <p class="card__tech">
+            Full-Stack Development · E-commerce · Team Project
+          </p>
+
+          <p class="card__note">
+            Private company project — source code not publicly available.
+          </p>
+        </article>
+
+        <!-- PROJECT 4 -->
+        <article class="card">
+          <p class="card__number">PROJECT 04</p>
+
+          <h3 class="card__title">University Parking App</h3>
+
+          <p class="card__text">
+            Completed a software engineering design project
+            proposing a mobile application to help university
+            students locate available parking spaces.
+            Focused on requirements analysis, system planning,
+            and application design rather than implementation.
+          </p>
+
+          <p class="card__tech">
+            Software Engineering · Requirements Analysis · System Design
+          </p>
+
+          <p class="card__note">
+            Academic design project — conceptual, not implemented.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
     <section class="about" id="about">
-      <h2>About me</h2>
-      <p>Write a few sentences about yourself here: what you study, what you like to build, and what you want to learn next.</p>
+      <h2>About Me</h2>
+
+      <p>
+        I'm a Computer Science graduate from King Abdulaziz
+        University with an interest in full-stack development
+        and software engineering.
+      </p>
+
+      <p>
+        I enjoy working with different technologies, solving
+        technical problems, and turning ideas into functional
+        applications. My experience includes web development,
+        backend APIs, database management, and collaborative
+        software projects.
+      </p>
+
+      <a class="about__link"
+         href="https://github.com/Khaled-Al-Rasheedi"
+         target="_blank" rel="noopener noreferrer">
+        Explore my GitHub &rarr;
+      </a>
     </section>
 
   </main>
 
-  <!-- FOOTER: built with Flexbox -->
+  <!-- ===== FOOTER ===== -->
   <footer class="site-footer">
-    <p>&copy; 2026 Khaled</p>
+    <p>&copy; 2026 Khaled. All rights reserved.</p>
+
     <ul class="footer__links">
-      <li><a href="https://github.com/Khaled-Al-Rasheedi" target="_blank" rel="noopener">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/khaled-alrasheedi/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li>
+        <a href="https://github.com/Khaled-Al-Rasheedi"
+           target="_blank" rel="noopener noreferrer">GitHub</a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/in/khaled-alrasheedi/"
+           target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </li>
     </ul>
   </footer>
 
