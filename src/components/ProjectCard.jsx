@@ -1,50 +1,51 @@
 import Toggle from "./Toggle.jsx";
 
-function ProjectCard({ project, isFavorite, onFavoriteChange }) {
+function ProjectCard({ photo, isFavorite, onFavoriteChange }) {
   return (
-    <article className="flex min-w-0 flex-col rounded-[10px] border border-[#d5dde5] bg-white p-5 transition-colors duration-200 dark:border-slate-700 dark:bg-[#152238] sm:p-8">
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <p className="text-xs font-bold tracking-wide text-[#2f5d8a] dark:text-blue-300">
-          {project.number}
-        </p>
-
-        <Toggle
-          label="Favorite"
-          checked={isFavorite}
-          onChange={onFavoriteChange}
+    <article className="flex min-w-0 flex-col overflow-hidden rounded-[10px] border border-[#e7dedd] bg-white transition-colors duration-200 dark:border-[#38272b] dark:bg-[#191415]">
+      {/* This fixed image frame makes the gallery consistent. */}
+      <div className="aspect-[4/3] overflow-hidden bg-[#e9e1de] dark:bg-[#302526]">
+        <img
+          src={photo.image}
+          alt={photo.alt}
+          loading="lazy"
+          decoding="async"
+          className="h-full w-full object-cover object-center transition-transform duration-300 hover:scale-105"
         />
       </div>
 
-      <h3 className="mb-3 text-xl font-bold text-[#1f4066] dark:text-blue-200">
-        {project.title}
-      </h3>
+      <div className="flex flex-1 flex-col p-4 sm:p-5">
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+          <span className="text-xs font-bold tracking-wider text-[#872436] dark:text-[#dfb66b]">
+            {photo.number}
+          </span>
+          <Toggle
+            label="Favorite"
+            checked={isFavorite}
+            onChange={onFavoriteChange}
+          />
+        </div>
 
-      <p className="mb-4 text-xs font-semibold uppercase tracking-wide text-[#2f5d8a] dark:text-blue-300">
-        {project.category}
-      </p>
+        <h3 className="mb-1 text-xl font-bold text-[#421823] dark:text-[#f2d7b0]">
+          {photo.title}
+        </h3>
+        <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-[#872436] dark:text-[#dfb66b]">
+          {photo.category}
+        </p>
+        <p className="mb-5 text-sm text-[#625559] dark:text-[#d6c9c7]">
+          {photo.description}
+        </p>
 
-      <p className="mb-8 break-words text-[#52606d] dark:text-slate-300">
-        {project.description}
-      </p>
-
-      <p className="mt-auto mb-4 break-words text-sm font-bold text-[#2f5d8a] dark:text-blue-300">
-        {project.tech}
-      </p>
-
-      {project.link ? (
+        {/* Image credits matter: these are sample licensed photographs. */}
         <a
-          href={project.link}
+          href={photo.source}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-fit font-bold text-[#2f5d8a] hover:underline focus-visible:underline dark:text-blue-300"
+          className="mt-auto w-fit text-xs text-[#7c2634] underline underline-offset-2 hover:text-[#4c1421] dark:text-[#dfb66b] dark:hover:text-[#f1d49a]"
         >
-          View on GitHub →
+          Photo: {photo.photographer} · CC BY-SA 4.0 ↗
         </a>
-      ) : (
-        <p className="text-sm italic text-[#52606d] dark:text-slate-400">
-          {project.note}
-        </p>
-      )}
+      </div>
     </article>
   );
 }

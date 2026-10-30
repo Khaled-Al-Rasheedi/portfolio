@@ -1,58 +1,46 @@
 import { useState } from "react";
-import { projects } from "../data/projects.js";
+import { photos } from "../data/projects.js";
 import ProjectCard from "./ProjectCard.jsx";
 
-const categories = [
-  "All",
-  ...new Set(projects.map((project) => project.category)),
-];
+const categories = ["All", ...new Set(photos.map((photo) => photo.category))];
 
 function Projects() {
   const [category, setCategory] = useState("All");
   const [favoriteIds, setFavoriteIds] = useState([]);
 
-  const visibleProjects = projects.filter(
-    (project) =>
-      category === "All" || project.category === category
+  const visiblePhotos = photos.filter(
+    (photo) => category === "All" || photo.category === category
   );
 
-  function handleFavoriteChange(projectId, checked) {
+  function handleFavoriteChange(photoId, checked) {
     setFavoriteIds((previousIds) =>
       checked
-        ? [...previousIds, projectId]
-        : previousIds.filter((id) => id !== projectId)
+        ? [...previousIds, photoId]
+        : previousIds.filter((id) => id !== photoId)
     );
   }
 
   return (
-    <section
-      id="projects"
-      className="mx-auto max-w-[70rem] px-4 py-12 md:py-16"
-    >
-      <h2 className="mb-2 text-3xl font-bold">
-        Featured Projects
+    <section id="gallery" className="mx-auto max-w-[72rem] px-4 py-12 sm:px-6 md:py-16">
+      <h2 className="mb-2 text-3xl font-bold text-[#421823] dark:text-[#f2d7b0]">
+        The 911 Gallery
       </h2>
-
-      <p className="mb-6 text-[#52606d] dark:text-slate-300">
-        A selection of my development work, practical experience,
-        and software engineering projects.
+      <p className="mb-6 text-[#625559] dark:text-[#d6c9c7]">
+        Porsche 911 photography, organized by model family and character.
       </p>
 
-      {/* CATEGORY FILTER */}
-      <div
-        aria-label="Filter projects by category"
-        className="mb-4 flex flex-wrap gap-2"
-      >
+      {/* Category buttons; useState determines the currently selected category. */}
+      <div aria-label="Filter photographs by category" className="mb-4 flex flex-wrap gap-2">
         {categories.map((item) => (
           <button
             key={item}
             type="button"
             onClick={() => setCategory(item)}
             aria-pressed={category === item}
-            className={`rounded-lg border px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 ${
+            className={`rounded-lg border px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b83b4c] ${
               category === item
-                ? "border-[#2f5d8a] bg-[#2f5d8a] text-white dark:border-blue-500 dark:bg-blue-600"
-                : "border-[#d5dde5] bg-white text-[#1f4066] hover:bg-blue-50 dark:border-slate-600 dark:bg-[#152238] dark:text-blue-200 dark:hover:bg-slate-700"
+                ? "border-[#791d2d] bg-[#791d2d] text-white dark:border-[#b68c4a] dark:bg-[#b68c4a] dark:text-[#1c1210]"
+                : "border-[#dacac9] bg-white text-[#6e1d2d] hover:bg-[#f7ecec] dark:border-[#584247] dark:bg-[#191415] dark:text-[#e8c789] dark:hover:bg-[#302126]"
             }`}
           >
             {item}
@@ -60,26 +48,24 @@ function Projects() {
         ))}
       </div>
 
-      <p
-        aria-live="polite"
-        className="mb-6 text-sm text-[#52606d] dark:text-slate-400"
-      >
-        Showing {visibleProjects.length} of {projects.length} projects
+      <p aria-live="polite" className="mb-6 text-sm text-[#625559] dark:text-[#d6c9c7]">
+        Showing {visiblePhotos.length} of {photos.length} photographs
       </p>
 
-      {/* PROJECT GRID */}
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
-        {visibleProjects.map((project) => (
+      {/* Grid images stay uniformly cropped with object-cover inside ProjectCard. */}
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {visiblePhotos.map((photo) => (
           <ProjectCard
-            key={project.id}
-            project={project}
-            isFavorite={favoriteIds.includes(project.id)}
-            onFavoriteChange={(checked) =>
-              handleFavoriteChange(project.id, checked)
-            }
+            key={photo.id}
+            photo={photo}
+            isFavorite={favoriteIds.includes(photo.id)}
+            onFavoriteChange={(checked) => handleFavoriteChange(photo.id, checked)}
           />
         ))}
       </div>
+      <p className="mt-6 text-xs text-[#736369] dark:text-[#c0aaa7]">
+        Sample gallery photos are credited to their original photographers; replace with your own work for a personal photography portfolio.
+      </p>
     </section>
   );
 }

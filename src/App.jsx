@@ -8,14 +8,9 @@ function App() {
 
   return (
     <div className={darkMode ? "dark" : ""}>
-      <div className="min-h-screen bg-[#f5f7fa] font-sans leading-relaxed text-[#1f2933] transition-colors duration-200 dark:bg-[#0b1220] dark:text-slate-100">
-        <Header
-          darkMode={darkMode}
-          onDarkModeChange={setDarkMode}
-        />
-
+      <div className="min-h-screen bg-[#faf9f7] font-sans leading-relaxed text-[#251d1e] transition-colors duration-200 dark:bg-[#0d0c0c] dark:text-[#f4eee9]">
+        <Header darkMode={darkMode} onDarkModeChange={setDarkMode} />
         <MainContent />
-
         <Footer />
       </div>
     </div>
