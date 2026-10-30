@@ -1,4 +1,15 @@
-node_modules/
-dist/
+# Dependencies and build results
+**/node_modules/
+**/dist/
+**/.vite/
+
+# Secrets: never commit these files
 .env
-.env.local
+.env.*
+**/.env
+**/.env.*
+!**/.env.example
+
+# Misc
+.DS_Store
+*.log

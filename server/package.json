@@ -1,0 +1,20 @@
+{
+  "name": "porsche-911-server",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "db:init": "node scripts/init-db.js",
+    "db:seed": "node scripts/seed.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.0",
+    "cookie-session": "^2.1.0",
+    "dotenv": "^17.0.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.0.0",
+    "pg": "^8.15.0"
+  }
+}
