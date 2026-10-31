@@ -80,7 +80,7 @@ The `server/.env.example` file contains placeholders only and can be safely comm
 
 ## Credits
 
-Photographs are externally hosted and credited to their respective photographers under the licenses described in `PHOTO_CREDITS.md`. This is sample portfolio content, not an assertion that Khaled personally photographed these cars.
+Photograph are externally hosted and credited to their respective photographers under the licenses described in `PHOTO_CREDITS.md`. This is sample portfolio content, not an assertion that Khaled personally photographed these cars.
 
 ## Deployment (later)
 
