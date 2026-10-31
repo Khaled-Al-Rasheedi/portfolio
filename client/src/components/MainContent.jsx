@@ -2,10 +2,10 @@ import Hero from "./Hero.jsx";
 import Projects from "./Projects.jsx";
 import About from "./About.jsx";
 
-function MainContent() {
+function MainContent({ darkMode }) {
   return (
     <main id="home">
-      <Hero />
+      <Hero darkMode={darkMode} />
       <Projects />
       <About />
     </main>

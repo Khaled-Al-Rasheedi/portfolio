@@ -32,7 +32,7 @@ function App() {
           onAuthChange={setUser}
           checkingSession={checkingSession}
         />
-        <MainContent />
+        <MainContent darkMode={darkMode} />
         <Footer />
       </div>
     </div>

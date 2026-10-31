@@ -1,7 +1,31 @@
-function Hero() {
+function Hero({ darkMode }) {
   return (
-    <section className="bg-[#791d2d] px-4 py-14 text-center text-white transition-colors duration-200 dark:bg-[#2b1018] sm:px-6 md:py-20">
-      <div className="mx-auto max-w-[48rem]">
+    <section className="relative isolate flex min-h-[480px] items-center justify-center overflow-hidden bg-[#791d2d] px-4 py-20 text-center text-white transition-colors duration-200 dark:bg-[#160e11] sm:px-6 md:min-h-[570px] md:py-28">
+      {/* One video at a time; changing theme swaps the file and restarts playback. */}
+      <video
+        key={darkMode ? "dark" : "light"}
+        className="absolute inset-0 z-0 h-full w-full object-cover motion-reduce:hidden"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+        tabIndex={-1}
+      >
+        <source
+          src={darkMode ? "/videos/porsche-dark.mp4" : "/videos/porsche-light.mp4"}
+          type="video/mp4"
+        />
+      </video>
+
+      {/* Darken the moving picture enough that the headline stays readable. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-[#2c0a13]/65 via-[#3a0d17]/50 to-[#1f070d]/80 dark:from-black/75 dark:via-black/55 dark:to-black/85"
+      />
+
+      <div className="relative z-20 mx-auto max-w-[48rem]">
         <p className="mb-4 text-xs font-bold tracking-[0.25em] text-[#f2d9bd] dark:text-[#dfb66b] sm:text-sm">
           PORSCHE 911 · THROUGH THE LENS
         </p>
