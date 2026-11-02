@@ -1,4 +1,4 @@
--- Application data: users, cars, orders, and order_items tables.
+-- Application data: users, cars, orders, order_items, and services tables.
 -- users: registered accounts (password hashes only, never raw passwords)
 CREATE TABLE IF NOT EXISTS users (
   id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -53,3 +53,16 @@ CREATE INDEX IF NOT EXISTS idx_orders_user_created
   ON orders (user_id, created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_order_items_order_id
   ON order_items (order_id);
+
+-- Assignment 4 Phase 2: the SERVER's authoritative checkout prices.
+-- Neither Checkout nor the browser may supply an amount of its own.
+CREATE TABLE IF NOT EXISTS services (
+  code TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  description TEXT NOT NULL,
+  includes TEXT NOT NULL,
+  price_cents INTEGER NOT NULL CHECK (price_cents > 0),
+  currency TEXT NOT NULL DEFAULT 'sar' CHECK (currency = 'sar'),
+  active BOOLEAN NOT NULL DEFAULT TRUE,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

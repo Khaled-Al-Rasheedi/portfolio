@@ -44,7 +44,7 @@ function Hero({ darkMode }) {
             View Gallery ↓
           </a>
           <a
-            href="#contact"
+            href="#services"
             className="rounded-lg border border-white/70 px-6 py-3 font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white dark:border-[#dfb66b] dark:text-[#dfb66b]"
           >
             Book a Shoot

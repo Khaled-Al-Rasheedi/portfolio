@@ -4,7 +4,7 @@ import { pool } from "../src/db.js";
 try {
   const sql = await readFile(new URL("../sql/schema.sql", import.meta.url), "utf8");
   await pool.query(sql);
-  console.log("Database initialized: users and cars tables are ready.");
+  console.log("Database initialized: users, cars, services, orders, and order_items tables are ready.");
 } catch (error) {
   console.error("Database initialization failed:", error.message);
   process.exitCode = 1;

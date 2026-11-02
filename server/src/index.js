@@ -4,6 +4,10 @@ import cookieSession from "cookie-session";
 import { pool } from "./db.js";
 import carsRouter from "./routes/cars.js";
 import authRouter from "./routes/auth.js";
+import servicesRouter from "./routes/services.js";
+import checkoutRouter from "./routes/checkout.js";
+import ordersRouter from "./routes/orders.js";
+import { stripeWebhook } from "./routes/webhook.js";
 
 if (!process.env.SESSION_SECRET || process.env.SESSION_SECRET.length < 32) {
   throw new Error("SESSION_SECRET must contain at least 32 characters in server/.env");
@@ -13,12 +17,15 @@ const app = express();
 const port = Number(process.env.PORT || 4000);
 const clientOrigin = process.env.CLIENT_ORIGIN || "http://localhost:5173";
 
-// Needed when Express runs behind a trusted hosting proxy (Railway, etc.).
 app.set("trust proxy", 1);
+
+// CRITICAL: Stripe's signed webhook must receive the ORIGINAL body bytes.
+// Put this BEFORE express.json(), cookies, and the browser origin guard.
+app.post("/api/stripe/webhook", express.raw({ type: "application/json", limit: "128kb" }), stripeWebhook);
+
 app.use(express.json({ limit: "10kb" }));
 
-// Only two database tables are needed: signed sessions live in browser cookies.
-// The browser can read a signed cookie, so ONLY place the user ID inside it.
+// Signed session: only the user ID goes in the browser cookie.
 app.use(cookieSession({
   name: "porsche_session",
   keys: [process.env.SESSION_SECRET],
@@ -28,7 +35,8 @@ app.use(cookieSession({
   secure: process.env.NODE_ENV === "production",
 }));
 
-// Simple origin guard for requests that can modify data (CSRF defense-in-depth).
+// Browser CSRF/origin defense. Stripe's authenticated webhook is intentionally
+// outside this guard; Stripe requests don't have your React website's Origin.
 app.use((req, res, next) => {
   if (["POST", "PUT", "PATCH", "DELETE"].includes(req.method)) {
     const origin = req.get("origin");
@@ -39,10 +47,13 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/api/health", (req, res) => res.json({ ok: true }));
+app.get("/api/health", (_req, res) => res.json({ ok: true }));
 app.use("/api/cars", carsRouter);
 app.use("/api/auth", authRouter);
-app.use((req, res) => res.status(404).json({ error: "Route not found" }));
+app.use("/api/services", servicesRouter);
+app.use("/api/checkout", checkoutRouter);
+app.use("/api/orders", ordersRouter);
+app.use((_req, res) => res.status(404).json({ error: "Route not found" }));
 
 try {
   await pool.query("SELECT 1");

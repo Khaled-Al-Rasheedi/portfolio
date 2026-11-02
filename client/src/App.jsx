@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header.jsx";
 import MainContent from "./components/MainContent.jsx";
 import Footer from "./components/Footer.jsx";
+import PaymentStatus from "./components/PaymentStatus.jsx";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -22,6 +23,11 @@ function App() {
     return () => { active = false; };
   }, []);
 
+  // Stripe redirects here with a session ID; only the WEBHOOK can mark paid.
+  const params = new URLSearchParams(window.location.search);
+  const checkoutResult = params.get("checkout");
+  const sessionId = params.get("session_id");
+
   return (
     <div className={darkMode ? "dark" : ""}>
       <div className="min-h-screen bg-[#faf9f7] font-sans leading-relaxed text-[#251d1e] transition-colors duration-200 dark:bg-[#0d0c0c] dark:text-[#f4eee9]">
@@ -32,7 +38,16 @@ function App() {
           onAuthChange={setUser}
           checkingSession={checkingSession}
         />
-        <MainContent darkMode={darkMode} />
+        {checkoutResult === "success" || checkoutResult === "cancel" ? (
+          <PaymentStatus
+            outcome={checkoutResult}
+            sessionId={sessionId}
+            user={user}
+            checkingSession={checkingSession}
+          />
+        ) : (
+          <MainContent darkMode={darkMode} user={user} checkingSession={checkingSession} />
+        )}
         <Footer />
       </div>
     </div>
