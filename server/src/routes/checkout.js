@@ -3,7 +3,7 @@ import { rateLimit } from "express-rate-limit";
 import { pool } from "../db.js";
 import { requireAuth } from "../middleware/requireAuth.js";
 import { stripe, requireStripe } from "../stripe.js";
-
+import { randomUUID } from "node:crypto";
 const router = Router();
 const checkoutLimit = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -78,7 +78,7 @@ router.post("/", checkoutLimit, requireAuth, requireStripe, async (req, res) => 
         success_url: `${origin}/?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${origin}/?checkout=cancel`,
       },
-      { idempotencyKey: `porsche-911-order-${orderId}` }
+      { idempotencyKey: `porsche-911-checkout-${randomUUID()}` }
     );
 
     if (!session.url) throw new Error("Stripe did not return a Checkout URL.");
